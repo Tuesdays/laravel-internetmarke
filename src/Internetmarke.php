@@ -56,7 +56,8 @@ class Internetmarke extends \SoapClient
         $key_phase->appendChild($doc->createTextNode($this->config->get('internetmarke.key_phase')));
         $header->appendChild($key_phase);
 
-        $now_dt = now();
+        $now_dt = new \DateTime(now(), new \DateTimeZone('UTC'));
+        $now_dt->setTimezone(new \DateTimeZone('Europe/Berlin'));
 
         $request_timestamp = $doc->createElementNS('http://oneclickforapp.dpag.de/V3', 'REQUEST_TIMESTAMP');
         $request_timestamp->appendChild($doc->createTextNode($now_dt->format('dmY-His')));
